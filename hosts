@@ -1,0 +1,5 @@
+[ec2-instance-ubuntu]
+54.252.151.142
+[ec2-instance-ubuntu:vars]
+ansible_ssh_private_key_file=~/.ssh/first-public.pem
+ansible_user=ubuntu
