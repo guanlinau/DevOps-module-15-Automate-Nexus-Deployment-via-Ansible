@@ -6,11 +6,12 @@
   tasks:
     - name: Update apt repo and cache
       apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
-    - name: Install java 8 and net-tools
+    - name: Install java 8 and net-tools, and acl
       apt:
         pkg:
           - openjdk-8-jre-headless
           - net-tools
+          - acl
 
 - name: Download, unpack Nexus installer and rename it
   hosts: ec2-instance-ubuntu
@@ -73,6 +74,7 @@
 - name: Start nexus with nexus user
   hosts: ec2-instance-ubuntu
   become: yes
+  # become_method: enable
   become_user: nexus
   tasks:
     # Method 1: using blockinfile module
