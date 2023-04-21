@@ -1,6 +1,6 @@
 ---
 - name: Install java and net-tools
-  hosts: ec2-instance-ubuntu
+  hosts: ec2_instance_ubuntu
   become: yes
   become_user: root
   tasks:
@@ -14,7 +14,7 @@
           - acl
 
 - name: Download, unpack Nexus installer and rename it
-  hosts: ec2-instance-ubuntu
+  hosts: ec2_instance_ubuntu
   become: yes
   become_user: root
   tasks:
@@ -44,7 +44,7 @@
       when: not stat_result.stat.exists
 
 - name: Create a new user to own the nexus folders
-  hosts: ec2-instance-ubuntu
+  hosts: ec2_instance_ubuntu
   become: yes
   become_user: root
   tasks:
@@ -72,7 +72,7 @@
         recurse: yes
 
 - name: Start nexus with nexus user
-  hosts: ec2-instance-ubuntu
+  hosts: ec2_instance_ubuntu
   become: yes
   # become_method: enable
   become_user: nexus
@@ -94,7 +94,7 @@
       command: /opt/nexus/bin/nexus start
 
 - name: Verifying nexus running
-  hosts: ec2-instance-ubuntu
+  hosts: ec2_instance_ubuntu
   become: yes
   become_user: nexus
   tasks:
